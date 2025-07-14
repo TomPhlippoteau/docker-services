@@ -1,0 +1,15 @@
+services:
+    open-webui:
+        image: ghcr.io/open-webui/open-webui:main
+        container_name: open-webui
+        environment:
+            - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
+        volumes:
+            - ./data/open-webui:/app/backend/data
+        restart: unless-stopped
+        networks:
+            - proxy-network
+
+networks:
+    proxy-network:
+        external: true

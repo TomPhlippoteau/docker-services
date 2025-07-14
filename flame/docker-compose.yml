@@ -1,0 +1,22 @@
+version: "3.8"
+
+services:
+    flame:
+        image: pawelmalak/flame
+        container_name: flame-dashboard
+        volumes:
+            - flame-data:/app/data
+        ports:
+            - "5005:5005"
+        environment:
+            PASSWORD: ${FLAME_PASSWORD}
+        networks:
+            - proxy-network
+        restart: unless-stopped
+
+volumes:
+    flame-data:
+
+networks:
+    proxy-network:
+        external: true
